@@ -48,6 +48,9 @@ class Predictor(object):
             Defaults to 1.
         """
         self._learner = Learner.from_file(model_path)
+        # garyfeng: fixing error msg "AttributeError: 'Learner' object has no attribute 'logger'"
+        #     by passing to the learner the root logger
+        self._learner.logger = logging.getLogger(__name__)
         self._pos_index = positive_label
         self.threshold = threshold
 
